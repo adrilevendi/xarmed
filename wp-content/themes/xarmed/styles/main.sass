@@ -1,0 +1,96 @@
+// VENDORS
+@import "../node_modules/bootstrap/scss/_functions"
+@import "../node_modules/bootstrap/scss/mixins/_breakpoints"
+
+@import "../node_modules/bootstrap/scss/bootstrap"
+@import "../node_modules/bootstrap/scss/_variables"
+
+//Fonts
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap')
+
+//Variables
+// $brand-black:
+
+@function rem($px)
+    @return $px / 16 + rem
+
+.x-bg-dark
+    background: radial-gradient(95.97% 189.79% at 0% 12.94%, #252527 21.12%, #101012 83.58%)
+
+.slick
+    &-arrow
+        position: absolute
+        z-index: 1
+
+    &-prev
+        left: 0
+    &-next
+        right: 0
+
+body
+    font-family: 'Lato', 'sans-serif'
+
+header
+    position: fixed
+    z-index: 3
+    .nav-wrapper
+        padding: 2rem 3rem
+        display: flex
+        flex-direction: row
+        align-items: center
+
+    nav
+        .site-branding
+            max-height: 48px
+        .nav-menu
+            margin-left: auto
+            .page_item
+                a
+                    font-family: 'Bebas Neue', 'sans-serif'
+                    color: white
+                    margin-left: 1rem
+                    font-size: rem(18)
+                    font-family: Bebas Neue
+                    font-style: normal
+                    font-weight: 400
+                    line-height: 22px
+
+
+    .custom-logo-link 
+        max-width: 250px
+        img 
+            max-width: 100%
+
+.page.home
+
+    header
+        .nav-wrapper
+            padding-bottom:4rem
+    .xcarousel
+        &__container
+            position: absolute
+            width: 100%
+            
+            // padding: 4rem 0
+            // z-index: 2
+        &__inner
+            height: 100vh
+            background: radial-gradient(95.97% 189.79% at 0% 12.94%, #252527 21.12%, #101012 83.58%)
+            display: flex
+            flex-direction: row
+            align-items: center
+
+        &__item
+            // max-width: 80%
+            text-align: center
+            display: flex
+            flex-direction: column
+            align-items: center
+        &__image
+            max-height: 200px
+
+        &__model
+            font-size: rem(25)
+            font-family: 'Bebas Neue'
+            color: white
+            letter-spacing: 0.16em

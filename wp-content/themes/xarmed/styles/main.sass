@@ -6,33 +6,83 @@
 @import "../node_modules/bootstrap/scss/_variables"
 
 //Fonts
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap')
+
+@font-face
+    font-family: Capture it
+    src: url("fonts/Capture it.ttf")
+
 
 //Variables
-// $brand-black:
+$brand-black: #1F1F1F
 
 @function rem($px)
     @return $px / 16 + rem
 
-.x-bg-dark
+@mixin xarmed-gradient
     background: radial-gradient(95.97% 189.79% at 0% 12.94%, #252527 21.12%, #101012 83.58%)
+
+@mixin xarmed-dark-theme
+    background: radial-gradient(95.97% 189.79% at 0% 12.94%, #252527 21.12%, #101012 83.58%)
+    color: white
+
+@mixin xarmed-button
+    border-radius: 0
+    outline: none
+    border-width: 1px
+    font-family: "Bebas Neue", "sans-serif"
+    padding: rem(12) rem(29)
+
+@mixin xarmed-button-primary
+    border-color: $brand-black
+    color: $brand-black
+
+.btn
+    @include xarmed-button
+
+    &-primary
+        @include xarmed-button-primary
+
+    &-secondary
+        border-color: white
+        color: white
+
+//Woocommerce button
+.button
+    @include xarmed-button
+    @include xarmed-button-primary
+    
 
 .slick
     &-arrow
         position: absolute
         z-index: 1
+        // display: none
 
     &-prev
         left: 0
     &-next
         right: 0
+    &-slide
+        outline: none
+
+a
+    &:hover
+        text-decoration: none
+        color: inherit
+
+    &:visited
+        color: inherit
+        text-decoration: none
+        
 
 body
     font-family: 'Lato', 'sans-serif'
 
-header
+header#masthead
     position: fixed
     z-index: 3
+    width: 100%
     .nav-wrapper
         padding: 2rem 3rem
         display: flex
@@ -40,11 +90,17 @@ header
         align-items: center
 
     nav
+        // position: absolute
+        text-align: center
+        display: flex
+        justify-content: center
+        width: 100%
         .site-branding
             max-height: 48px
         .nav-menu
             margin-left: auto
             .page_item
+                display: inline-block
                 a
                     font-family: 'Bebas Neue', 'sans-serif'
                     color: white
@@ -55,27 +111,41 @@ header
                     font-weight: 400
                     line-height: 22px
 
-
-    .custom-logo-link 
+    .custom-logo-link
         max-width: 250px
-        img 
+        img
             max-width: 100%
+
+    #menuToggler
+        &__inner
+            &:first-child
+                margin-top: 5px
+        &__line
+            height: 3px
+            background: white
+            width: 20px
+
+#primary
+    @include xarmed-dark-theme
+    padding-top: 6rem
 
 .page.home
 
-    header
+    header#masthead
         .nav-wrapper
-            padding-bottom:4rem
+            padding-bottom: 4rem
     .xcarousel
         &__container
-            position: absolute
             width: 100%
-            
+            height: 100vh
+            display: flex
+
             // padding: 4rem 0
             // z-index: 2
         &__inner
-            height: 100vh
-            background: radial-gradient(95.97% 189.79% at 0% 12.94%, #252527 21.12%, #101012 83.58%)
+            // @include xarmed-gradient
+            margin: auto
+            overflow-x: hidden
             display: flex
             flex-direction: row
             align-items: center
@@ -94,3 +164,50 @@ header
             font-family: 'Bebas Neue'
             color: white
             letter-spacing: 0.16em
+        
+        &__back-heading
+            font-family: Capture it
+            font-size: 450px
+            font-style: normal
+            font-weight: 400
+            line-height: 518px
+            letter-spacing: 0.16em
+            text-align: center
+            position: absolute
+
+
+    #primary
+        padding-top: 0rem
+
+
+#footer
+
+    padding: rem(49) rem(15)
+
+    @include media-breakpoint-up(md)
+        padding: rem(49) rem(107)
+
+    background-color: #1F1F1F
+    color: white
+    a
+        color: white
+        text-decoration: none
+        transition: 0.1s ease
+        &:hover
+            color: darken($color: #fff, $amount: 20)
+
+    @include media-breakpoint-up(md)
+        .border-col
+            border-right: 0.0625rem solid white
+
+.woocommerce-breadcrumb
+  padding: 0 .3rem
+  
+.product
+    .woocommerce-product-gallery
+        ol
+            list-style: none
+            li
+                display: inline
+    .summary
+        .cart

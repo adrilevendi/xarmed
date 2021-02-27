@@ -13,6 +13,7 @@
     src: url("fonts/Capture it.ttf")
 
 
+
 //Variables
 $brand-black: #1F1F1F
 
@@ -36,6 +37,13 @@ $brand-black: #1F1F1F
 @mixin xarmed-button-primary
     border-color: $brand-black
     color: $brand-black
+
+html
+  scroll-behavior: smooth
+  /******DEBUG*******/
+//  -ready
+  
+
 
 .btn
     @include xarmed-button
@@ -202,12 +210,25 @@ header#masthead
 
 .woocommerce-breadcrumb
   padding: 0 .3rem
-  
+
+#main
+    @include make-container
 .product
+    @include make-row
+    flex-wrap: wrap
     .woocommerce-product-gallery
+        @include make-col(6)
+
         ol
             list-style: none
             li
                 display: inline
     .summary
+        @include make-col(5)
         .cart
+    .woocommerce-tabs
+        @include make-col-ready(12)
+        
+
+#productCarousel
+    max-width: 100vw

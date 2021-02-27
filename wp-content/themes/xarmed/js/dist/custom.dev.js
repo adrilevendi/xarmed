@@ -10,7 +10,8 @@ jQuery(document).ready(function () {
     slidesToShow: 1,
     slidesToScroll: 1,
     centerMode: true,
-    centerPadding: '410px'
+    centerPadding: '410px',
+    arrows: false
   });
   homeArmsCarousel.on('wheel', function (e) {
     e.preventDefault();

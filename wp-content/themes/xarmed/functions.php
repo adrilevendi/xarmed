@@ -1,4 +1,5 @@
 <?php
+
 /**
  * xarmed functions and definitions
  *
@@ -7,12 +8,12 @@
  * @package xarmed
  */
 
-if ( ! defined( '_S_VERSION' ) ) {
+if (!defined('_S_VERSION')) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.0.0' );
+	define('_S_VERSION', '1.0.0');
 }
 
-if ( ! function_exists( 'xarmed_setup' ) ) :
+if (!function_exists('xarmed_setup')) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -20,17 +21,18 @@ if ( ! function_exists( 'xarmed_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function xarmed_setup() {
+	function xarmed_setup()
+	{
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 * If you're building a theme based on xarmed, use a find and replace
 		 * to change 'xarmed' to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( 'xarmed', get_template_directory() . '/languages' );
+		load_theme_textdomain('xarmed', get_template_directory() . '/languages');
 
 		// Add default posts and comments RSS feed links to head.
-		add_theme_support( 'automatic-feed-links' );
+		add_theme_support('automatic-feed-links');
 
 		/*
 		 * Let WordPress manage the document title.
@@ -38,19 +40,19 @@ if ( ! function_exists( 'xarmed_setup' ) ) :
 		 * hard-coded <title> tag in the document head, and expect WordPress to
 		 * provide it for us.
 		 */
-		add_theme_support( 'title-tag' );
+		add_theme_support('title-tag');
 
 		/*
 		 * Enable support for Post Thumbnails on posts and pages.
 		 *
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
-		add_theme_support( 'post-thumbnails' );
+		add_theme_support('post-thumbnails');
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
 			array(
-				'menu-1' => esc_html__( 'Primary', 'xarmed' ),
+				'menu-1' => esc_html__('Primary', 'xarmed'),
 			)
 		);
 
@@ -84,7 +86,7 @@ if ( ! function_exists( 'xarmed_setup' ) ) :
 		);
 
 		// Add theme support for selective refresh for widgets.
-		add_theme_support( 'customize-selective-refresh-widgets' );
+		add_theme_support('customize-selective-refresh-widgets');
 
 		/**
 		 * Add support for core custom logo.
@@ -100,9 +102,19 @@ if ( ! function_exists( 'xarmed_setup' ) ) :
 				'flex-height' => true,
 			)
 		);
+
+		/**
+		 * Add support for woocommerce.
+		 *
+		 */
+
+		// add_theme_support('woocommerce');
+		// add_theme_support('wc-product-gallery-zoom');
+		// add_theme_support('wc-product-gallery-lightbox');
+		// add_theme_support('wc-product-gallery-slider');
 	}
 endif;
-add_action( 'after_setup_theme', 'xarmed_setup' );
+add_action('after_setup_theme', 'xarmed_setup');
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -111,22 +123,24 @@ add_action( 'after_setup_theme', 'xarmed_setup' );
  *
  * @global int $content_width
  */
-function xarmed_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'xarmed_content_width', 640 );
+function xarmed_content_width()
+{
+	$GLOBALS['content_width'] = apply_filters('xarmed_content_width', 640);
 }
-add_action( 'after_setup_theme', 'xarmed_content_width', 0 );
+add_action('after_setup_theme', 'xarmed_content_width', 0);
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function xarmed_widgets_init() {
+function xarmed_widgets_init()
+{
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Sidebar', 'xarmed' ),
+			'name'          => esc_html__('Sidebar', 'xarmed'),
 			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'xarmed' ),
+			'description'   => esc_html__('Add widgets here.', 'xarmed'),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 class="widget-title">',
@@ -134,30 +148,31 @@ function xarmed_widgets_init() {
 		)
 	);
 }
-add_action( 'widgets_init', 'xarmed_widgets_init' );
+add_action('widgets_init', 'xarmed_widgets_init');
 
 /**
  * Enqueue scripts and styles.
  */
-function xarmed_scripts() {
-	wp_enqueue_style( 'xarmed-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'xarmed-style', 'rtl', 'replace' );
-	wp_enqueue_style( 'xarmed-bootstrap', get_template_directory_uri() . '/node_modules/bootstrap/dist/css/bootstrap.min.css', array() );
-	wp_enqueue_style( 'xarmed-main-style', get_template_directory_uri() . '/dist/main.css', array('xarmed-bootstrap') );
-	wp_enqueue_style( 'slick-slider-style','https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', array('') );
+function xarmed_scripts()
+{
+	wp_enqueue_style('xarmed-style', get_stylesheet_uri(), array(), _S_VERSION);
+	wp_style_add_data('xarmed-style', 'rtl', 'replace');
+	wp_enqueue_style('xarmed-bootstrap', get_template_directory_uri() . '/node_modules/bootstrap/dist/css/bootstrap.min.css', array());
+	wp_enqueue_style('xarmed-main-style', get_template_directory_uri() . '/dist/main.css', array('xarmed-bootstrap'));
+	wp_enqueue_style('slick-slider-style', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css', array(''));
 
 
-	wp_enqueue_script( 'xarmed-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-	wp_enqueue_script( 'xarmed-jquery', 'https://code.jquery.com/jquery-3.5.1.min.js', array() );
-	wp_enqueue_script( 'slick-carousel', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', array('xarmed-jquery') );
-	wp_enqueue_script( 'xarmed-custom-script', get_template_directory_uri() . '/js/custom.js', array('xarmed-jquery', 'slick-carousel') );
+	wp_enqueue_script('xarmed-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
+	wp_enqueue_script('xarmed-jquery', 'https://code.jquery.com/jquery-3.5.1.min.js', array());
+	wp_enqueue_script('slick-carousel', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', array('xarmed-jquery'));
+	wp_enqueue_script('xarmed-custom-script', get_template_directory_uri() . '/js/custom.js', array('xarmed-jquery', 'slick-carousel'));
 
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
+	if (is_singular() && comments_open() && get_option('thread_comments')) {
+		wp_enqueue_script('comment-reply');
 	}
 }
-add_action( 'wp_enqueue_scripts', 'xarmed_scripts' );
+add_action('wp_enqueue_scripts', 'xarmed_scripts');
 
 /**
  * Implement the Custom Header feature.
@@ -182,7 +197,15 @@ require get_template_directory() . '/inc/customizer.php';
 /**
  * Load Jetpack compatibility file.
  */
-if ( defined( 'JETPACK__VERSION' ) ) {
+if (defined('JETPACK__VERSION')) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+function xarmed_get_the_product_thumbnail_url( $size = 'shop_catalog' ) {
+	global $post;
+	$image_size = apply_filters( 'single_product_archive_thumbnail_size', $size );
+	return get_the_post_thumbnail_url( $post->ID, $image_size );
+}
+
+//Disable default Woocommerce styling
+add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );

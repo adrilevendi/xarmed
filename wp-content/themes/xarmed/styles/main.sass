@@ -11,6 +11,12 @@
 @font-face
     font-family: Capture it
     src: url("fonts/Capture it.ttf")
+@font-face
+    font-family:"Bebas Neue"
+    src: url("../fonts/BebasNeue-Regular.woff2")
+    src: url("../fonts/BebasNeue-Regular.woff")
+    src: url("../fonts/BebasNeue-Regular.ttf")
+    src: url("../fonts/BebasNeue-Regular.otf")
 
 
 
@@ -33,17 +39,43 @@ $brand-black: #1F1F1F
     border-width: 1px
     font-family: "Bebas Neue", "sans-serif"
     padding: rem(12) rem(29)
+    line-height: 22.83px
+    letter-spacing: 3px
 
 @mixin xarmed-button-primary
     border-color: $brand-black
     color: $brand-black
 
+@mixin small-bebas
+    font-family: Bebas Neue
+    font-size: 16px
+    font-style: normal
+    font-weight: 400
+    line-height: 23px
+    letter-spacing: 0.16em
+
 html
   scroll-behavior: smooth
-  /******DEBUG*******/
-//  -ready
+/******DEBUG*******/
+  *
+   outline: 2px dashed green
   
+  div 
+    outline-color: blue
+  
+  h1,h2,h3,h4,h5,h6,p,span 
+    outline-color: red
 
+
+h2
+    font-family: "Bebas Neue", "sans-serif" ,sans-serif
+    font-size: rem(25)
+    letter-spacing: 1.6px
+    font-weight: 400
+
+
+.smallcaps
+    @include small-bebas
 
 .btn
     @include xarmed-button
@@ -54,6 +86,7 @@ html
     &-secondary
         border-color: white
         color: white
+        background: none
 
 //Woocommerce button
 .button
@@ -63,16 +96,85 @@ html
 
 .slick
     &-arrow
+        font-size: 0
+        line-height: 0
         position: absolute
-        z-index: 1
-        // display: none
-
+        top: 50%
+        display: block
+        width: 20px
+        height: 20px
+        padding: 0
+        -webkit-transform: translate(0,-50%)
+        -ms-transform: translate(0,-50%)
+        transform: translate(0,-50%)
+        cursor: pointer
+        color: transparent
+        border: none
+        outline: 0
+        background: 0 0
+        
+        &::after
+            position: absolute
+            top: 80%
+            left: 50%
+            transform: translate(-50%, -50%)
+            z-index: 1
+            color: white
+            width: 20px
+            height: 20px
+            font-size: 30px
     &-prev
         left: 0
+        &::after
+            content: '\2039'
+
+        
     &-next
+    
         right: 0
+        &::after
+            content: '\203A'
+
+
     &-slide
         outline: none
+
+    &-dots
+        position: absolute
+        bottom: -25px
+        display: block
+        width: 100%
+        padding: 0
+        margin: 0
+        list-style: none
+        text-align: center
+        li 
+            button 
+                font-size: 0
+                line-height: 0
+                display: block
+                width: 20px
+                height: 20px
+                padding: 5px
+                cursor: pointer
+                color: transparent
+                border: 0
+                outline: 0
+                background: 0 0
+                &::before
+                    font-family: slick
+                    font-size: 6px
+                    line-height: 20px
+                    position: absolute
+                    top: 0
+                    left: 0
+                    width: 20px
+                    height: 20px
+                    content: '•'
+                    text-align: center
+                    opacity: .25
+                    color: white
+                    -webkit-font-smoothing: antialiased
 
 a
     &:hover
@@ -133,9 +235,13 @@ header#masthead
             background: white
             width: 20px
 
-#primary
+main#primary
     @include xarmed-dark-theme
     padding-top: 6rem
+
+    
+
+
 
 .page.home
 
@@ -143,6 +249,7 @@ header#masthead
         .nav-wrapper
             padding-bottom: 4rem
     .xcarousel
+        $p:&
         &__container
             width: 100%
             height: 100vh
@@ -158,34 +265,83 @@ header#masthead
             flex-direction: row
             align-items: center
 
+            .slick-list
+                // overflow-x: hidden
+                // overflow-y: visible
+
         &__item
             // max-width: 80%
             text-align: center
             display: flex
             flex-direction: column
             align-items: center
+            padding: 5rem 0
+            position: relative
+            &.slick-current
+                .xcarousel
+                    &__back-heading
+                        opacity: 1
+                    &__image
+                        max-width: 500px
+                        max-height: 250px
+                
+        
+        &__content
+            position: absolute
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+
         &__image
             max-height: 200px
+            transition: .9s ease
 
         &__model
             font-size: rem(25)
             font-family: 'Bebas Neue'
             color: white
             letter-spacing: 0.16em
+            text-align: left
+            line-height: 32.4px
         
         &__back-heading
-            font-family: Capture it
-            font-size: 450px
-            font-style: normal
-            font-weight: 400
-            line-height: 518px
-            letter-spacing: 0.16em
-            text-align: center
-            position: absolute
-
+            opacity: 0
+            transition: .2s ease
+            h3
+                font-family: 'Capture it'
+                color: rgba(92,86,86,0.34)
+                font-size: 450px
+                font-style: normal
+                font-weight: 400
+                line-height: 518px
+                letter-spacing: 0.16em
+                text-align: center
+                letter-spacing: 16px
+                white-space: nowrap
 
     #primary
         padding-top: 0rem
+
+#product-single
+    .product
+        &-title
+            font-family: "Bebas Neue", sans-serif
+        &-description
+            line-height: 23px
+            letter-spacing: 0.16em
+        &-specs-table
+            color: white
+            font-family: "Bebas Neue", sans-serif
+            tbody
+                tr
+                    td
+                        @include small-bebas
+                        text-align: center
+                        border-top: none
+                        border-bottom: 1px solid white
+                        
+            
+        
 
 
 #footer
@@ -211,24 +367,4 @@ header#masthead
 .woocommerce-breadcrumb
   padding: 0 .3rem
 
-#main
-    @include make-container
-.product
-    @include make-row
-    flex-wrap: wrap
-    .woocommerce-product-gallery
-        @include make-col(6)
 
-        ol
-            list-style: none
-            li
-                display: inline
-    .summary
-        @include make-col(5)
-        .cart
-    .woocommerce-tabs
-        @include make-col-ready(12)
-        
-
-#productCarousel
-    max-width: 100vw

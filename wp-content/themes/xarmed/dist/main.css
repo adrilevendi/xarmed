@@ -9898,9 +9898,38 @@ h3 {
   font-family: Capture it;
   src: url("fonts/Capture it.ttf");
 }
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../fonts/BebasNeue-Regular.woff2");
+  src: url("../fonts/BebasNeue-Regular.woff");
+  src: url("../fonts/BebasNeue-Regular.ttf");
+  src: url("../fonts/BebasNeue-Regular.otf");
+}
 html {
   scroll-behavior: smooth;
-  /******DEBUG*******/
+}
+
+/******DEBUG*******/
+ * *
+ * outline: 2px dashed green
+ * div 
+ *  outline-color: blue
+ * h1,h2,h3,h4,h5,h6,p,span 
+ *  outline-color: red */
+h2 {
+  font-family: "Bebas Neue", "sans-serif", sans-serif;
+  font-size: 1.5625rem;
+  letter-spacing: 1.6px;
+  font-weight: 400;
+}
+
+.smallcaps {
+  font-family: Bebas Neue;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0.16em;
 }
 
 .btn {
@@ -9909,6 +9938,8 @@ html {
   border-width: 1px;
   font-family: "Bebas Neue", "sans-serif";
   padding: 0.75rem 1.8125rem;
+  line-height: 22.83px;
+  letter-spacing: 3px;
 }
 .btn-primary {
   border-color: #1F1F1F;
@@ -9917,6 +9948,7 @@ html {
 .btn-secondary {
   border-color: white;
   color: white;
+  background: none;
 }
 
 .button {
@@ -9925,22 +9957,93 @@ html {
   border-width: 1px;
   font-family: "Bebas Neue", "sans-serif";
   padding: 0.75rem 1.8125rem;
+  line-height: 22.83px;
+  letter-spacing: 3px;
   border-color: #1F1F1F;
   color: #1F1F1F;
 }
 
 .slick-arrow {
+  font-size: 0;
+  line-height: 0;
   position: absolute;
+  top: 50%;
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  cursor: pointer;
+  color: transparent;
+  border: none;
+  outline: 0;
+  background: 0 0;
+}
+.slick-arrow::after {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 1;
+  color: white;
+  width: 20px;
+  height: 20px;
+  font-size: 30px;
 }
 .slick-prev {
   left: 0;
 }
+.slick-prev::after {
+  content: "‹";
+}
 .slick-next {
   right: 0;
 }
+.slick-next::after {
+  content: "›";
+}
 .slick-slide {
   outline: none;
+}
+.slick-dots {
+  position: absolute;
+  bottom: -25px;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+}
+.slick-dots li button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  cursor: pointer;
+  color: transparent;
+  border: 0;
+  outline: 0;
+  background: 0 0;
+}
+.slick-dots li button::before {
+  font-family: slick;
+  font-size: 6px;
+  line-height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  content: "•";
+  text-align: center;
+  opacity: 0.25;
+  color: white;
+  -webkit-font-smoothing: antialiased;
 }
 
 a:hover {
@@ -10007,7 +10110,7 @@ header#masthead #menuToggler__line {
   width: 20px;
 }
 
-#primary {
+main#primary {
   background: radial-gradient(95.97% 189.79% at 0% 12.94%, #252527 21.12%, #101012 83.58%);
   color: white;
   padding-top: 6rem;
@@ -10033,28 +10136,75 @@ header#masthead #menuToggler__line {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 5rem 0;
+  position: relative;
+}
+.page.home .xcarousel__item.slick-current .xcarousel__back-heading {
+  opacity: 1;
+}
+.page.home .xcarousel__item.slick-current .xcarousel__image {
+  max-width: 500px;
+  max-height: 250px;
+}
+.page.home .xcarousel__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .page.home .xcarousel__image {
   max-height: 200px;
+  transition: 0.9s ease;
 }
 .page.home .xcarousel__model {
   font-size: 1.5625rem;
   font-family: "Bebas Neue";
   color: white;
   letter-spacing: 0.16em;
+  text-align: left;
+  line-height: 32.4px;
 }
 .page.home .xcarousel__back-heading {
-  font-family: Capture it;
+  opacity: 0;
+  transition: 0.2s ease;
+}
+.page.home .xcarousel__back-heading h3 {
+  font-family: "Capture it";
+  color: rgba(92, 86, 86, 0.34);
   font-size: 450px;
   font-style: normal;
   font-weight: 400;
   line-height: 518px;
   letter-spacing: 0.16em;
   text-align: center;
-  position: absolute;
+  letter-spacing: 16px;
+  white-space: nowrap;
 }
 .page.home #primary {
   padding-top: 0rem;
+}
+
+#product-single .product-title {
+  font-family: "Bebas Neue", sans-serif;
+}
+#product-single .product-description {
+  line-height: 23px;
+  letter-spacing: 0.16em;
+}
+#product-single .product-specs-table {
+  color: white;
+  font-family: "Bebas Neue", sans-serif;
+}
+#product-single .product-specs-table tbody tr td {
+  font-family: Bebas Neue;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0.16em;
+  text-align: center;
+  border-top: none;
+  border-bottom: 1px solid white;
 }
 
 #footer {
@@ -10083,42 +10233,6 @@ header#masthead #menuToggler__line {
 
 .woocommerce-breadcrumb {
   padding: 0 0.3rem;
-}
-
-#main {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.product {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
-  flex-wrap: wrap;
-}
-.product .woocommerce-product-gallery {
-  flex: 0 0 50%;
-  max-width: 50%;
-}
-.product .woocommerce-product-gallery ol {
-  list-style: none;
-}
-.product .woocommerce-product-gallery ol li {
-  display: inline;
-}
-.product .summary {
-  flex: 0 0 41.6666666667%;
-  max-width: 41.6666666667%;
-}
-.product .woocommerce-tabs {
-  position: relative;
-  width: 100%;
-  padding-right: 6;
-  padding-left: 6;
 }
 
 /*# sourceMappingURL=main.css.map */

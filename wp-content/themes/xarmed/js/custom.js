@@ -24,6 +24,8 @@ jQuery(document).ready(function(){
       let proudctCarousel = $('#productCarousel').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
+        dots: true
+
         // centerMode: true,
         // centerPadding: '410px',
         // arrows:false,

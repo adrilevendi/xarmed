@@ -9,7 +9,7 @@
 		$loop = new WP_Query($args);
 		?>
 
-		<div class="container-fluid">
+		<div class="container-fluid px-5">
 			<div class="row mt-5">
 				<div class="col-md-6">
 					<div id="productCarousel" class="product-carousel">
@@ -28,8 +28,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="row mt-5">
-				<div class="col-md-5 offset-md-1 mt-5 mb-5">
+			<div class="row mt-5 pt-5 pb-5 align-items-md-center">
+				<div class="col-md-5 offset-md-1">
 					<table class="table product-specs-table">
 					
 						<tbody>
@@ -53,7 +53,11 @@
 						</tbody>
 					</table>
 				</div>
+				<div class="col text-center text-md-left">
+						<img src="<?=the_post_thumbnail_url()?>" alt="<?=esc_html ( the_title() )?>" class="img-fluid w-75 offset-md-1">
+				</div>
 			</div>
+			<div class="pb-5"></div>
 		</div>
 	</div>
 	<?php

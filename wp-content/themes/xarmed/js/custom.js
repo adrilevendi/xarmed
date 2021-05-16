@@ -2,7 +2,7 @@ function $(prop) {
 	return jQuery(prop);
 }
 
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
 	console.log('sds');
 
 	let homeArmsCarousel = $('.xcarousel__inner').slick({
@@ -24,7 +24,7 @@ jQuery(document).ready(function() {
 		]
 	});
 
-	homeArmsCarousel.on('wheel', (function(e) {
+	homeArmsCarousel.on('wheel', (function (e) {
 		e.preventDefault(); if (e.originalEvent.deltaY < 0) {
 			$(this).slick('slickNext');
 		} else {
@@ -41,4 +41,30 @@ jQuery(document).ready(function() {
 		// centerPadding: '410px',
 		// arrows:false,
 	});
+
+	//add to cart
+
+	$('#addToCartBtn').click(function (e) {
+		e.preventDefault();
+		var filterStDtForm = $('#addToCartForm');
+		var params = {
+			// async: true,
+			url: filterStDtForm.attr('action'),
+			data: filterStDtForm.serialize(), // form data
+			type: 'POST', // POST
+			dataType: 'json',
+
+			success: function (data) {
+
+				console.log(data);
+			},
+			error: function (e) {
+				console.log(e);
+			}
+		};
+
+
+		jQuery.ajax(params);
+		// return false;
+	})
 })

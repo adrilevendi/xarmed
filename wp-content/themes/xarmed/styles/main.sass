@@ -277,6 +277,9 @@ main#primary
             align-items: center
             padding: 5rem 0
             position: relative
+            @include media-breakpoint-down(sm)
+                flex-direction: row
+                display: block
             &.slick-current
                 .xcarousel
                     &__back-heading
@@ -284,9 +287,15 @@ main#primary
                     &__image
                         max-width: 500px
                         max-height: 250px
+                        @include media-breakpoint-down(sm)
+                            max-width: 325px
+                            margin: auto
+            
+
                 
         
         &__content
+            // @include media-breakpoint-up(sm)
             position: absolute
             top: 50%
             left: 50%
@@ -295,14 +304,23 @@ main#primary
         &__image
             max-height: 200px
             transition: .9s ease
+            
 
         &__model
-            font-size: rem(25)
-            font-family: 'Bebas Neue'
-            color: white
-            letter-spacing: 0.16em
-            text-align: left
-            line-height: 32.4px
+            @include media-breakpoint-down(sm)
+                    padding-left: 1.1rem
+            h3
+                font-size: rem(25)
+                font-family: 'Bebas Neue'
+                color: white
+                letter-spacing: 0.16em
+                text-align: left
+                line-height: 32.4px
+                @include media-breakpoint-down(sm)
+                    font-size: rem(16)
+                
+                    
+
         
         &__back-heading
             opacity: 0
@@ -318,29 +336,32 @@ main#primary
                 text-align: center
                 letter-spacing: 16px
                 white-space: nowrap
+                @include media-breakpoint-down(sm)
+                    font-size: 106px
+                
 
     #primary
         padding-top: 0rem
 
-#product-single
-    .product
-        &-title
-            font-family: "Bebas Neue", sans-serif
-        &-description
-            line-height: 23px
-            letter-spacing: 0.16em
-        &-specs-table
-            color: white
-            font-family: "Bebas Neue", sans-serif
-            tbody
-                tr
-                    td
-                        @include small-bebas
-                        text-align: center
-                        border-top: none
-                        border-bottom: 1px solid white
-                        
-            
+// #product-single
+.product
+    &-title
+        font-family: "Bebas Neue", sans-serif
+    &-description
+        line-height: 23px
+        letter-spacing: 0.16em
+    &-specs-table
+        color: white
+        font-family: "Bebas Neue", sans-serif
+        tbody
+            tr
+                td
+                    @include small-bebas
+                    text-align: center
+                    border-top: none
+                    border-bottom: 1px solid white
+                    
+        
         
 
 
@@ -368,3 +389,20 @@ main#primary
   padding: 0 .3rem
 
 
+
+#page-cart
+    .cart-table
+        color: white
+        font-family: "Bebas Neue", sans-serif
+        tbody
+            tr
+                td
+                    @include small-bebas
+                    border-top: none
+                    border-bottom: 1px solid white
+        
+        th
+                    @include small-bebas
+
+                    border-top: none
+                    border-bottom: 1px solid white

@@ -24,7 +24,11 @@
 					<div class="my-5">
 						<h2 class="product-title"><?= the_title() ?></h2>
 						<p class="mt-4 product-description"><?= the_content(); ?></p>
-						<button class="btn btn-secondary mt-4">Shto në shportë</button>
+						<form action="<?php echo site_url() ?>/wp-admin/admin-ajax.php" id="addToCartForm">
+						<input type="hidden" name="action" value="add_to_cart">
+						<input type="hidden" name="product_id" value="<?= the_ID(); ?>">
+						<button class="btn btn-secondary mt-4" id="addToCartBtn">Shto në shportë</button>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -75,3 +79,10 @@
 	</div><!-- .entry-content -->
 
 </article><!-- #post-<?php the_ID(); ?> -->
+
+<script>
+    $(document).ready(function() {
+
+	});
+
+</script>

@@ -209,3 +209,71 @@ function xarmed_get_the_product_thumbnail_url( $size = 'shop_catalog' ) {
 
 //Disable default Woocommerce styling
 add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+
+add_action('init', 'user_init');
+
+function user_init()
+{
+   if (is_user_logged_in()) {
+	   $cart_field = get_user_meta(get_current_user_id(), 'cart' );
+	if (!$cart_field) {
+		add_user_meta(
+			get_current_user_id(),
+			'cart',
+			null,
+			false
+		);	  
+	}
+	// var_dump($cart_field);
+	
+	  }
+	//   delete_user_meta(
+	// 	get_current_user_id(),
+	// 	'cart');
+}
+add_action('init', 'start_session');
+
+function start_session()
+{
+   if (!session_id()) {
+      session_start();
+	  
+	  }
+
+}
+
+
+
+add_action('wp_ajax_add_to_cart', 'add_to_cart'); // wp_ajax_{ACTION HERE}
+add_action('wp_ajax_nopriv_add_to_cart', 'add_to_cart');
+
+function add_to_cart()
+{
+	if(!is_array($_SESSION['cart'])){
+		$_SESSION['cart'] = array();
+   }
+	if(!is_user_logged_in()) {
+		$_SESSION['cart'][] = $_POST['product_id'];
+	} else {
+		$existing_cart = get_user_meta(get_current_user_id(), 'cart' );
+		$new_cart = array();
+		foreach($existing_cart as $p) {
+			$new_cart[] = $p;
+			// var_dump( $p);
+		}
+
+		$new_cart[] = $_POST['product_id'];
+		// var_dump( $new_cart);
+		add_user_meta(
+			get_current_user_id(),
+			'cart',
+			$_POST['product_id'],
+			false
+		);	  
+		// $existing_cart[] = $_POST['product_id'];
+		// update_user_meta(get_current_user_id(), 'cart', $_POST['product_id']);
+	}
+	echo json_encode($existing_cart);
+    die();
+
+}
